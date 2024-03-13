@@ -1,18 +1,80 @@
 package com.android.calendarapp;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity {
+import com.android.calendarapp.calendarHandling.CalendarAdapter;
+import com.android.calendarapp.calendarHandling.OnItemListener;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements OnItemListener {
+
+    private TextView monthAndYear;
+    private RecyclerView recyclerView;
+    private LocalDate selectedDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initializeWidgets();
+        selectedDate = LocalDate.now();
+    }
+
+    private ArrayList<String> getDaysInCurrentMonth(LocalDate date) {
+        ArrayList<String> daysInMonthList = new ArrayList<>();
+        YearMonth ym = YearMonth.from(date);
+
+        int daysInMonth = ym.lengthOfMonth();
+        LocalDate firstOfMonth = selectedDate.withDayOfMonth(1);
+
+        int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
+
+        for(int i = 1; i <= 42; i++){
+            if(i <= dayOfWeek || i > daysInMonth + dayOfWeek){
+                daysInMonthList.add("");
+            }else{
+                daysInMonthList.add(String.valueOf(i - dayOfWeek));
+            }
+        }
+        return daysInMonthList;
+    }
+
+    private String dateFormat(LocalDate date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
+                return date.format(formatter);
+    }
+
+    private void initializeWidgets() {
+        recyclerView = findViewById(R.id.recyclerView);
+        monthAndYear = findViewById(R.id.currentMonthAndYear);
+    }
+
+    public void previousMonth(View v){
+        selectedDate = selectedDate.minusMonths(1);
+    }
+    public void nextMonth(View v){
+        selectedDate = selectedDate.plusMonths(1);
+    }
+
+    @Override
+    public void onItemClick(int position, String dayText) {
+        if(dayText.equals("")){
+            String msg = "Date selected: " + dayText + " " + getDaysInCurrentMonth(selectedDate);
+            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        }
     }
 }
