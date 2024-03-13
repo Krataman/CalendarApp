@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements OnItemListener {
 
     private String dateFormat(LocalDate date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
-                return date.format(formatter);
+        return date.format(formatter);
     }
 
     private void initializeWidgets() {
@@ -89,8 +89,8 @@ public class MainActivity extends AppCompatActivity implements OnItemListener {
     @Override
     public void onItemClick(int position, String dayText) {
         if(dayText.equals("")){
-            String msg = "Date selected: " + dayText + " " + getDaysInCurrentMonth(selectedDate);
-            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+            String msg = "Date selected: " + dayText + " " + dateFormat(selectedDate);
+            Toast.makeText(this, "TEST", Toast.LENGTH_LONG).show();
         }
     }
 }
