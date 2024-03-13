@@ -32,6 +32,19 @@ public class MainActivity extends AppCompatActivity implements OnItemListener {
         setContentView(R.layout.activity_main);
         initializeWidgets();
         selectedDate = LocalDate.now();
+        setMonthAndYearView();
+    }
+
+    private void setMonthAndYearView() {
+        monthAndYear.setText(dateFormat(selectedDate));
+        ArrayList<String> daysInMonth = getDaysInCurrentMonth(selectedDate);
+
+        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(calendarAdapter);
+
     }
 
     private ArrayList<String> getDaysInCurrentMonth(LocalDate date) {
@@ -65,9 +78,12 @@ public class MainActivity extends AppCompatActivity implements OnItemListener {
 
     public void previousMonth(View v){
         selectedDate = selectedDate.minusMonths(1);
+        setMonthAndYearView();
+
     }
     public void nextMonth(View v){
         selectedDate = selectedDate.plusMonths(1);
+        setMonthAndYearView();
     }
 
     @Override
