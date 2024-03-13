@@ -88,9 +88,9 @@ public class MainActivity extends AppCompatActivity implements OnItemListener {
 
     @Override
     public void onItemClick(int position, String dayText) {
-        if(dayText.equals("")){
+        if(!dayText.equals("")){
             String msg = "Date selected: " + dayText + " " + dateFormat(selectedDate);
-            Toast.makeText(this, "TEST", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
         }
     }
 }
