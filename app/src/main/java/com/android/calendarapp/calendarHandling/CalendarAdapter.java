@@ -22,7 +22,18 @@ public class CalendarAdapter  extends RecyclerView.Adapter<CalendarViewHolder>{
     }
 
     //region CalendarViewHolder
-
+    //nafoukne layout R.layout.calendar_cell, coz je XML layout || calendar_cell => definuje jak vypada 1 prvek v recyclerView
+    /**
+     * Inflates a layout for a single item in the RecyclerView, initializes its layout parameters,
+     * and creates a new instance of the CalendarViewHolder to hold the inflated view.
+     *
+     * @param parent The ViewGroup into which the new View will be added after it is bound to
+     *               an adapter position.
+     * @param viewType The type of the view to be inflated. This is used to distinguish between
+     *                 different types of views that may be inflated by the adapter.
+     * @return A new instance of CalendarViewHolder with the inflated view and an item listener attached.
+     *         This ViewHolder will be used to hold the inflated view for an item in the RecyclerView.
+     */
     @NonNull
     @Override
     public CalendarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
