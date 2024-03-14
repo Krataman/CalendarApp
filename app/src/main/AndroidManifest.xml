@@ -12,9 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CalendarApp"
         tools:targetApi="31">
-        <activity
-            android:name=".ODCActivity"
-            android:exported="false" />
+
         <activity
             android:name=".OnDayClickActivity"
             android:exported="false"

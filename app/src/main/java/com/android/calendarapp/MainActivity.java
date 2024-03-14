@@ -6,11 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -90,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements OnItemListener {
 
     public void startOnDayClickView() {
         // Vytvoření Intentu pro spuštění nové aktivity
-        Intent intent = new Intent(this, ODCActivity.class);
+        Intent intent = new Intent(this, OnDayClickActivity.class);
         intent.putExtra("msg", msg); // predani promenne msg tride ODCActivity
         startActivity(intent);
     }
