@@ -1,5 +1,6 @@
 package com.android.calendarapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements OnItemListener {
 
     private TextView monthAndYear;
+    private String msg;
     private RecyclerView recyclerView;
     private LocalDate selectedDate;
     @Override
@@ -86,11 +88,19 @@ public class MainActivity extends AppCompatActivity implements OnItemListener {
         setMonthAndYearView();
     }
 
+    public void startOnDayClickView() {
+        // Vytvoření Intentu pro spuštění nové aktivity
+        Intent intent = new Intent(this, ODCActivity.class);
+        intent.putExtra("msg", msg); // predani promenne msg tride ODCActivity
+        startActivity(intent);
+    }
+
     @Override
     public void onItemClick(int position, String dayText) {
         if(!dayText.equals("")){
-            String msg = "Date selected: " + dayText + " " + dateFormat(selectedDate);
+            msg = "Date selected: " + dayText + " " + dateFormat(selectedDate);
             Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+            startOnDayClickView();
         }
     }
 }
