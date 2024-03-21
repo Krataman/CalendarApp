@@ -23,7 +23,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:onClick="previousMonth"
-            app:srcCompat="@drawable/arrow_left" />
+            app:srcCompat="@drawable/arrow_left"/>
 
         <TextView
             android:id="@+id/currentMonthAndYear"
