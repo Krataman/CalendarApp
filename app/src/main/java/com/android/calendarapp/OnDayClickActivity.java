@@ -17,10 +17,6 @@ public class OnDayClickActivity extends AppCompatActivity {
         passedInMsg = getIntent().getStringExtra("msg");
 
         createToolBar();
-        updateText();
-    }
-    public void updateText(){
-        ((TextView) findViewById(R.id.textToDisplayInActivity)).setText(passedInMsg);
     }
     public void createToolBar(){
         Toolbar toolBar = findViewById(R.id.ODCToolBar);
