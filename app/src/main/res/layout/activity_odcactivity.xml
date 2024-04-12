@@ -2,40 +2,45 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/onDayClickActivity"
+    android:id="@+id/onDayClickActivityLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".OnDayClickActivity">
 
     <LinearLayout
+        android:id="@+id/ODCToolbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBaseline_toTopOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/orange"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/ODCToolBar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/orange"
             android:theme="@style/ToolBar_ArrowAndTextColor"
             app:layout_constraintTop_toTopOf="parent">
         </androidx.appcompat.widget.Toolbar>
 
     </LinearLayout>
 
+
     <LinearLayout
+        android:id="@+id/eventsRecyclerViewLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/ODCToolbarLayout"
+        app:layout_constraintBottom_toTopOf="@+id/createEventLinearLayuout" >
+
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/eventsRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <!--
         <TextView
@@ -51,5 +56,25 @@
     </LinearLayout>
 
 
+    <LinearLayout
+        android:id="@+id/createEventLinearLayuout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/createEventFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/orange"
+            android:onClick="startCreateEvent"
+            android:src="@drawable/add" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

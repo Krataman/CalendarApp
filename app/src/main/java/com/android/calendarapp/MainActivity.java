@@ -1,7 +1,9 @@
 package com.android.calendarapp;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.calendarapp.calendarHandling.CalendarAdapter;
 import com.android.calendarapp.calendarHandling.OnItemListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements OnItemListener {
         initializeWidgets();
         selectedDate = LocalDate.now();
         setMonthAndYearView();
+
     }
 
     private void setMonthAndYearView() {

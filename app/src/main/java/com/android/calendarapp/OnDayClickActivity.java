@@ -30,4 +30,9 @@ public class OnDayClickActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    public void startCreateEvent(View view){
+        Intent intent = new Intent(this, CreateEvent.class);
+        startActivity(intent);
+    }
 }
