@@ -1,12 +1,8 @@
 package com.android.calendarapp;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -14,14 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.calendarapp.calendarHandling.CalendarAdapter;
 import com.android.calendarapp.calendarHandling.OnItemListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements OnItemListener {
+public class MainActivity extends AppCompatActivity implements OnItemListener{
 
     private TextView monthAndYear;
     private String msg;
@@ -88,19 +83,16 @@ public class MainActivity extends AppCompatActivity implements OnItemListener {
         setMonthAndYearView();
     }
 
-    public void startOnDayClickView() {
-        // Vytvoření Intentu pro spuštění nové aktivity
-        Intent intent = new Intent(this, OnDayClickActivity.class);
-        intent.putExtra("msg", msg); // predani promenne msg tride ODCActivity
-        startActivity(intent);
-    }
-
     @Override
     public void onItemClick(int position, String dayText) {
         if(!dayText.equals("")){
-            msg = "Date selected: " + dayText + " " + dateFormat(selectedDate);
-            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-            startOnDayClickView();
+            startODC();
         }
     }
+    //region start ODC
+
+    public void startODC() {
+        GeneralActivityCommands.startActivity(this, OnDayClickActivity.class);
+    }
+    //endregion
 }
