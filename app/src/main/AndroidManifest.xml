@@ -13,7 +13,7 @@
         android:theme="@style/Theme.CalendarApp"
         tools:targetApi="31" >
         <activity
-            android:name=".CreateEvent"
+            android:name=".eventsHandling.CreateEvent"
             android:parentActivityName=".OnDayClickActivity"
             android:exported="false"
             android:theme="@style/Theme.CalendarApp" />

@@ -1,4 +1,4 @@
-package com.android.calendarapp;
+package com.android.calendarapp.eventsHandling;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.android.calendarapp.R;
 import com.android.calendarapp.eventsHandling.EventClockFragment;
 
 public class CreateEvent extends AppCompatActivity {
