@@ -1,5 +1,6 @@
 package com.android.calendarapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -86,13 +87,9 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
     @Override
     public void onItemClick(int position, String dayText) {
         if(!dayText.equals("")){
-            startODC();
+            Intent intent = new Intent(this, OnDayClickActivity.class);
+            intent.putExtra("dayClicked", dayText);
+            startActivity(intent);
         }
     }
-    //region start ODC
-
-    public void startODC() {
-        GeneralActivityCommands.startActivity(this, OnDayClickActivity.class);
-    }
-    //endregion
 }

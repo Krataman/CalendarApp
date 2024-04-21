@@ -30,6 +30,10 @@ public class OnDayClickActivity extends AppCompatActivity {
         eventList = new ArrayList<>();
         passedInIntent = getIntent();
 
+        eventList.add(new Event("Event1", "1", "1", "1"));
+        eventList.add(new Event("Event2", "2", "2", "2"));
+        eventList.add(new Event("Event3", "3", "3", "3"));
+
         check();
         incialization();
         createToolBar();
@@ -84,4 +88,5 @@ public class OnDayClickActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
     //endregion
+
 }
