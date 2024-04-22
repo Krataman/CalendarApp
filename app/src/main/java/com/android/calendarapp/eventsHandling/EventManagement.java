@@ -5,16 +5,43 @@ import java.util.HashMap;
 import java.util.List;
 
 public class EventManagement {
-    private HashMap<String, List<Event>> daysAndEvents; // string - datum dne na ktery uzivatel klikne v main activity
-    // || List je list eventu ktere majhi byt obsazene v konkretnim dni na ktery uzivatel klinul
+    // Singleton instance
+    private static EventManagement instance;
+    // HashMap to store events by date
+    private HashMap<String, List<Event>> daysAndEvents;
 
-    public void addEvents(String dayText, Event event){
-        List<Event> temp = daysAndEvents.get(dayText);
+    // Private constructor to prevent external instantiation
+    private EventManagement() {
+        daysAndEvents = new HashMap<>();
+    }
 
-        if(temp.isEmpty()){
-            temp = new ArrayList<>();
+    // Singleton access method
+    public static EventManagement getInstance() {
+        if (instance == null) {
+            instance = new EventManagement();
         }
-        temp.add(event);
-        daysAndEvents.put(dayText, temp);
+        return instance;
+    }
+
+    // Method to add events to a specific day
+    public void addEvents(String dayText, Event event) {
+        // Get existing events for the day
+        List<Event> events = daysAndEvents.get(dayText);
+
+        // If there's no list, initialize a new one
+        if (events == null) {
+            events = new ArrayList<>();
+        }
+
+        // Add the event to the list
+        events.add(event);
+
+        // Update the HashMap
+        daysAndEvents.put(dayText, events);
+    }
+
+    // Method to get all events for a specific day
+    public List<Event> getEvents(String dayClicked) {
+        return daysAndEvents.getOrDefault(dayClicked, new ArrayList<>());
     }
 }

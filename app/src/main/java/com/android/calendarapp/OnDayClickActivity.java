@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.calendarapp.eventsHandling.CreateEvent;
 import com.android.calendarapp.eventsHandling.Event;
 import com.android.calendarapp.eventsHandling.EventAdapter;
+import com.android.calendarapp.eventsHandling.EventManagement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,19 +21,18 @@ public class OnDayClickActivity extends AppCompatActivity {
     private Intent passedInIntent;
     private RecyclerView recyclerView;
     private EventAdapter adapter;
-    private List<Event> eventList;
+    private EventManagement management;
+    private String dayClicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_odcactivity);
 
-        eventList = new ArrayList<>();
+        management = EventManagement.getInstance();
         passedInIntent = getIntent();
+        dayClicked = passedInIntent.getStringExtra("dayClicked"); // PROBLEM !!! intetn je vzdy null???
 
-        eventList.add(new Event("Event1", "1", "1", "1"));
-        eventList.add(new Event("Event2", "2", "2", "2"));
-        eventList.add(new Event("Event3", "3", "3", "3"));
 
         check();
         incialization();
@@ -48,7 +48,7 @@ public class OnDayClickActivity extends AppCompatActivity {
         String time = passedInIntent.getStringExtra("timeOfTheEvent");
 
 
-        eventList.add(new Event(name, location, descritpion, time));
+        management.addEvents(dayClicked, new Event(name, location, descritpion, time));
     }
     //endregion
     //region createToolbar
@@ -62,7 +62,6 @@ public class OnDayClickActivity extends AppCompatActivity {
     //region startMainActivity
     public void startMainActivity(View view) {
         GeneralActivityCommands.startActivity(this, MainActivity.class);
-        finish();
     }
     //endregion
     //region startCreateEvent
@@ -84,7 +83,7 @@ public class OnDayClickActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.eventsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new EventAdapter(eventList, this);
+        adapter = new EventAdapter(management.getEvents(passedInIntent.getStringExtra("dayClicked")), this);
         recyclerView.setAdapter(adapter);
     }
     //endregion

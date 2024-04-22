@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
     }
 
     private void setMonthAndYearView() {
-        monthAndYear.setText(dateFormat(selectedDate));
+        monthAndYear.setText(dateFormat(selectedDate, 1));
         ArrayList<String> daysInMonth = getDaysInCurrentMonth(selectedDate);
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
@@ -64,9 +65,15 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
         return daysInMonthList;
     }
 
-    private String dateFormat(LocalDate date){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
-        return date.format(formatter);
+    private String dateFormat(LocalDate date, int type){
+        if(type == 1){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
+            return date.format(formatter);
+        }else if(type == 2){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+            return date.format(formatter);
+        }
+        return null;
     }
 
     private void initializeWidgets() {
@@ -86,9 +93,11 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
 
     @Override
     public void onItemClick(int position, String dayText) {
-        if(!dayText.equals("")){
+        if(!dayText.isEmpty()){
             Intent intent = new Intent(this, OnDayClickActivity.class);
-            intent.putExtra("dayClicked", dayText);
+
+            String str = dateFormat(selectedDate, 2);
+            intent.putExtra("dayClicked", str);
             startActivity(intent);
         }
     }
