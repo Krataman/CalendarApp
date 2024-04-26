@@ -1,7 +1,9 @@
 package com.android.calendarapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
@@ -30,8 +32,22 @@ public class OnDayClickActivity extends AppCompatActivity {
         setContentView(R.layout.activity_odcactivity);
 
         management = EventManagement.getInstance();
+
         passedInIntent = getIntent();
-        dayClicked = passedInIntent.getStringExtra("dayClicked"); // PROBLEM !!! intetn je vzdy null???
+
+        /** TESTING
+        if (passedInIntent == null) {
+            Log.e("OnDayClickActivity", "Intent je null");
+        } else {
+            Log.d("OnDayClickActivity", "Intent obsahuje data");
+        }
+
+        dayClicked = passedInIntent.getStringExtra("dayClicked");
+        Log.d("OnDayClickActivity", "Hodnota dayClicked: " + dayClicked);
+         **/
+        dayClicked = passedInIntent.getStringExtra("dayClicked");
+        // PROBLEM !!! intetn je vzdy null??? => vyreseno vubec nechapu jak jsem to fixnul ale zrejme to souviselo s problemem,
+        // ze datum ktere jsem pasoval nebylo datum dne na ktery uzivatel klika ale aktualni/dnesni datum :)
 
 
         check();
@@ -59,14 +75,11 @@ public class OnDayClickActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     //endregion
-    //region startMainActivity
-    public void startMainActivity(View view) {
-        GeneralActivityCommands.startActivity(this, MainActivity.class);
-    }
-    //endregion
     //region startCreateEvent
     public void startCreateEvent(View view){
-        GeneralActivityCommands.startActivity(this, CreateEvent.class);
+        Intent intent = new Intent(this, CreateEvent.class);
+        intent.putExtra("dayClicked", dayClicked);
+        startActivity(intent);
     }
     //endregion
     //region eventCreationCheck
@@ -87,5 +100,4 @@ public class OnDayClickActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
     //endregion
-
 }

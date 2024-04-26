@@ -28,10 +28,10 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initializeWidgets();
         selectedDate = LocalDate.now();
         setMonthAndYearView();
-
     }
 
     private void setMonthAndYearView() {
@@ -94,11 +94,23 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
     @Override
     public void onItemClick(int position, String dayText) {
         if(!dayText.isEmpty()){
-            Intent intent = new Intent(this, OnDayClickActivity.class);
 
-            String str = dateFormat(selectedDate, 2);
-            intent.putExtra("dayClicked", str);
-            startActivity(intent);
+            // Získání dne v měsíci z textu (dayText)
+            int day = Integer.parseInt(dayText);
+
+            // Vytvoření data z vybraného dne
+            LocalDate selectedDay = selectedDate.withDayOfMonth(day);
+
+            // Formátování data na ddMMyyyy
+            String formattedDate = selectedDay.format(DateTimeFormatter.ofPattern("ddMMyyyy"));
+
+            // Předání data do startODC
+            startODC(formattedDate);
         }
+    }
+    public void startODC(String dateText){
+        Intent intent = new Intent(this, OnDayClickActivity.class);
+        intent.putExtra("dayClicked", dateText);
+        startActivity(intent);
     }
 }

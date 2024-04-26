@@ -53,6 +53,9 @@ public class CreateEvent extends AppCompatActivity{
         intent.putExtra("timeOfTheEvent", time);
         intent.putExtra("isEventCreated", true);
 
+        Intent temp = getIntent(); // cast docasneho fixu popsano nize
+        intent.putExtra("dayClicked", temp.getStringExtra("dayClicked")); // docasne pasovani z ODC sem a pak zase zpet jiank se mi ztraci promenna dayClicked => potrebuji nejak zmenit aby to nebylo takhle goofy :)
+
         startActivity(intent);
         finish();
     }

@@ -28,11 +28,6 @@ public class EventManagement {
         // Get existing events for the day
         List<Event> events = daysAndEvents.get(dayText);
 
-        // If there's no list, initialize a new one
-        if (events == null) {
-            events = new ArrayList<>();
-        }
-
         // Add the event to the list
         events.add(event);
 
@@ -42,6 +37,11 @@ public class EventManagement {
 
     // Method to get all events for a specific day
     public List<Event> getEvents(String dayClicked) {
-        return daysAndEvents.getOrDefault(dayClicked, new ArrayList<>());
+        if(!daysAndEvents.containsKey(dayClicked)){
+            daysAndEvents.put(dayClicked, new ArrayList<>());
+            return daysAndEvents.get(dayClicked);
+        }else{
+            return daysAndEvents.get(dayClicked);
+        }
     }
 }
