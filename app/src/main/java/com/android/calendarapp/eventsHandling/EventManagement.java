@@ -56,14 +56,6 @@ public class EventManagement {
         }
     }
     //endregion
-    //region setHashmapy
-    // Setter pro HashMap
-    public void setDaysAndEvents(HashMap<String, List<Event>> newData) {
-        if (newData != null) {
-            this.daysAndEvents = newData;
-        }
-    }
-    //endregion
 
 
     public HashMap<String, List<Event>> getDaysAndEvents() {
