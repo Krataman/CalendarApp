@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.calendarapp.calendarHandling.CalendarAdapter;
 import com.android.calendarapp.calendarHandling.OnItemListener;
+import com.android.calendarapp.eventsHandling.EventManagement;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -113,4 +114,5 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
         intent.putExtra("dayClicked", dateText);
         startActivity(intent);
     }
+
 }

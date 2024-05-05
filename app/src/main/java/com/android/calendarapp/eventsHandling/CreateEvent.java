@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextClock;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,9 +16,11 @@ import com.android.calendarapp.GeneralActivityCommands;
 import com.android.calendarapp.OnDayClickActivity;
 import com.android.calendarapp.R;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class CreateEvent extends AppCompatActivity{
+public class CreateEvent extends AppCompatActivity implements EventClockFragment.OnTimeSelectedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +30,7 @@ public class CreateEvent extends AppCompatActivity{
         setOpenClockFragmentAction();
         setConfirmEventCreationAction();
 
-        ((TextClock) findViewById(R.id.eventTextClock)).setFormat12Hour("HH:mm:ss a"); // nastavi format hodin
     }
-
 
     //region createToolbar
     public void createToolBar(){
@@ -42,15 +43,13 @@ public class CreateEvent extends AppCompatActivity{
     //region start ODC
     public void startODC(){
 
-        TextClock clock = findViewById(R.id.eventTextClock);
-        String time = clock.getText().toString();
-
+        TextView time = findViewById(R.id.eventTextClock);
 
         Intent intent = new Intent(this, OnDayClickActivity.class);
         intent.putExtra("nameOfEvent", ((EditText) findViewById(R.id.nameOfTheEvent)).getText().toString());
         intent.putExtra("descriptionOfTheEvent", ((EditText) findViewById(R.id.descriptionOfTheEvent)).getText().toString());
         intent.putExtra("locationOfTheEvent", ((EditText) findViewById(R.id.locationOfTheEvent)).getText().toString());
-        intent.putExtra("timeOfTheEvent", time);
+        intent.putExtra("timeOfTheEvent", time.getText());
         intent.putExtra("isEventCreated", true);
 
         Intent temp = getIntent(); // cast docasneho fixu popsano nize
@@ -83,5 +82,21 @@ public class CreateEvent extends AppCompatActivity{
         });
     }
     //endregion
+    @Override
+    public void onTimeSelected(int hourOfDay, int minute) {
+        // Zpracování času vybraného z fragmentu
+        String selectedTime = String.format("%02d:%02d", hourOfDay, minute);
+
+        // Aktualizace TextView nebo jiné komponenty s přijatým časem
+        TextView textView = findViewById(R.id.eventTextClock);
+        textView.setText(selectedTime);
+    }
+
+    public String currTime(){
+        LocalTime currentTime = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+
+        return currentTime.format(formatter);
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.android.calendarapp.eventsHandling;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -14,12 +15,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TimePicker;
 
 import com.android.calendarapp.R;
 
 
 public class EventClockFragment extends DialogFragment{
 
+    private TimePicker timePicker;
+    private OnTimeSelectedListener listener;
+
+    public interface OnTimeSelectedListener {
+        void onTimeSelected(int hourOfDay, int minute);
+    }
     //region onCreateView nebo-li fragment_event_clock
     /**
      * Metoda ktera po kliknuti tlacitka hodin vytvori fragment ve kterem jsou hodiny a tlacitko pro zavreni fragmentu.
@@ -38,14 +46,47 @@ public class EventClockFragment extends DialogFragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event_clock, container, false);
 
+        timePicker = view.findViewById(R.id.timePicker);
+        timePicker.setIs24HourView(true);
+
         Button returnButton = view.findViewById(R.id.clockFragmentGoBackButton);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismiss();
+                // Získání zvoleného času
+                int hour = timePicker.getHour();
+                int minute = timePicker.getMinute();
+
+                if (listener != null) {
+                    listener.onTimeSelected(hour, minute);
+                }
+
+                dismiss(); // Zavření fragmentu
             }
         });
+
         return view;
+    }
+    //endregion
+    //region attach
+    /**
+     * Called when a fragment is first attached to its context.
+     * This is the point where you should initialize any components
+     * that require a reference to the context or need to communicate
+     * with the parent activity.
+     *
+     * @param context The context to which the fragment is being attached.
+     *
+     * @throws RuntimeException if the context does not implement the required listener interface.
+     */
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnTimeSelectedListener) {
+            listener = (OnTimeSelectedListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + "OnTimeSelectedListener not implemented!!!");
+        }
     }
     //endregion
 }

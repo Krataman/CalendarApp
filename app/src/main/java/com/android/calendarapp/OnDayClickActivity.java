@@ -32,7 +32,6 @@ public class OnDayClickActivity extends AppCompatActivity {
         setContentView(R.layout.activity_odcactivity);
 
         management = EventManagement.getInstance();
-
         passedInIntent = getIntent();
 
         /** TESTING
@@ -80,6 +79,7 @@ public class OnDayClickActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CreateEvent.class);
         intent.putExtra("dayClicked", dayClicked);
         startActivity(intent);
+        finish();
     }
     //endregion
     //region eventCreationCheck
