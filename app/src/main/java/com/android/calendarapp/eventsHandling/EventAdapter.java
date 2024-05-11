@@ -40,6 +40,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
         holder.location.setText(event.getLocationOfTheEvent());
         holder.description.setText(event.getDescriptionOfTheEvent());
         holder.time.setText(event.getTimeOfTheEvent());
+        holder.color.setBackgroundColor(event.getColor());
         // Nastavte další prvky UI podle potřeby
     }
 

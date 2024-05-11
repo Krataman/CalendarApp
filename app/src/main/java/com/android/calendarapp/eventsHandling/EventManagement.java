@@ -12,7 +12,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import com.google.gson.Gson;
 
 public class EventManagement {
     // Singleton instance

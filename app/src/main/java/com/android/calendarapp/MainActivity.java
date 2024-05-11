@@ -1,10 +1,11 @@
 package com.android.calendarapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -12,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.calendarapp.calendarHandling.CalendarAdapter;
 import com.android.calendarapp.calendarHandling.OnItemListener;
-import com.android.calendarapp.eventsHandling.EventManagement;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -25,6 +25,11 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
     private String msg;
     private RecyclerView recyclerView;
     private LocalDate selectedDate;
+
+    private View colorBar; // Reference na barevný pruh
+    private Button colorPickerButton; // Tlačítko pro otevření color pickeru
+    private int selectedColor; // Aktuální zvolená barva
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
         initializeWidgets();
         selectedDate = LocalDate.now();
         setMonthAndYearView();
+
+
     }
 
     private void setMonthAndYearView() {
@@ -115,4 +122,34 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
         startActivity(intent);
     }
 
+    /**
+    //region
+    public void colorPicker(){
+        colorBar = findViewById(R.id.colorBar);
+        colorPickerButton = findViewById(R.id.colorPickerButtonutton);
+
+        selectedColor = Color.RED; // Výchozí barva
+
+        colorPickerButton.setOnClickListener(v -> {
+            // Vytvoření nového dialogu AmbilWarna
+            AmbilWarnaDialog colorPickerDialog = new AmbilWarnaDialog(this, selectedColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+                @Override
+                public void onOk(AmbilWarnaDialog dialog, int color) {
+                    // Uložení nové barvy a nastavení pruhu
+                    selectedColor = color;
+                    colorBar.setBackgroundColor(selectedColor);
+                }
+
+                @Override
+                public void onCancel(AmbilWarnaDialog dialog) {
+                    // Zrušení dialogu
+                }
+            });
+
+            // Zobrazení dialogu
+            colorPickerDialog.show();
+        });
+    }
+    //endregion
+     */
 }

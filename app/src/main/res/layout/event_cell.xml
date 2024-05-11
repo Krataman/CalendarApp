@@ -6,14 +6,17 @@
     android:background="@color/black"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
+        android:id="@+id/cons1">
+
+
 
         <TextView
             android:id="@+id/eventCellName"
@@ -22,17 +25,18 @@
             android:text="NAME"
             android:textColor="@color/white"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25"
-            android:textStyle="bold"/>
+            app:layout_constraintVertical_bias="0" />
 
         <TextView
             android:id="@+id/eventCellLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="LOCATION"
             android:textColor="@color/white"
             android:textSize="18sp"
@@ -49,12 +53,12 @@
             android:text="DESCRIPTION"
             android:textColor="@color/grey"
             android:textSize="16sp"
+            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/eventCellLocation"
-            app:layout_constraintVertical_bias="0"
-            android:textStyle="italic"/>
+            app:layout_constraintVertical_bias="0" />
 
         <TextView
             android:id="@+id/eventCellTime"
@@ -68,7 +72,23 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/eventCellDescritpion"
             app:layout_constraintVertical_bias="0" />
-    </LinearLayout>
 
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/eventCellColorBar"
+            android:layout_width="10dp"
+            android:layout_height="80dp"
+            android:background="#FFFFFF" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.android.calendarapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -61,9 +62,11 @@ public class OnDayClickActivity extends AppCompatActivity {
         String location = passedInIntent.getStringExtra("descriptionOfTheEvent");
         String descritpion = passedInIntent.getStringExtra("locationOfTheEvent");
         String time = passedInIntent.getStringExtra("timeOfTheEvent");
+        int color = passedInIntent.getIntExtra("sC", Color.WHITE);
 
 
-        management.addEvents(dayClicked, new Event(name, location, descritpion, time));
+        management.addEvents(dayClicked, new Event(name, location, descritpion, time, color));
+
     }
     //endregion
     //region createToolbar
@@ -87,6 +90,7 @@ public class OnDayClickActivity extends AppCompatActivity {
         if(passedInIntent != null) {
             if (passedInIntent.getBooleanExtra("isEventCreated", false)) {
                 createEvent();
+
             }
         }
     }

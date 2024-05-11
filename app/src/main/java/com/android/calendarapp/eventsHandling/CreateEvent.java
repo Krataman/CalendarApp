@@ -1,26 +1,28 @@
 package com.android.calendarapp.eventsHandling;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextClock;
 import android.widget.TextView;
-import android.widget.TimePicker;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.android.calendarapp.GeneralActivityCommands;
+import com.android.calendarapp.ColorPickerFragment;
 import com.android.calendarapp.OnDayClickActivity;
 import com.android.calendarapp.R;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
-public class CreateEvent extends AppCompatActivity implements EventClockFragment.OnTimeSelectedListener{
+public class CreateEvent extends AppCompatActivity implements EventClockFragment.OnTimeSelectedListener, ColorPickerFragment.OnColorSelectedListener{
+
+    private View colorView;
+    private int currentColor = Color.WHITE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +30,8 @@ public class CreateEvent extends AppCompatActivity implements EventClockFragment
         setContentView(R.layout.activity_create_event);
         createToolBar();
         setOpenClockFragmentAction();
+        setOpenColorPickerFragmentAction();
         setConfirmEventCreationAction();
-
     }
 
     //region createToolbar
@@ -51,6 +53,7 @@ public class CreateEvent extends AppCompatActivity implements EventClockFragment
         intent.putExtra("locationOfTheEvent", ((EditText) findViewById(R.id.locationOfTheEvent)).getText().toString());
         intent.putExtra("timeOfTheEvent", time.getText());
         intent.putExtra("isEventCreated", true);
+        intent.putExtra("sC", currentColor);
 
         Intent temp = getIntent(); // cast docasneho fixu popsano nize
         intent.putExtra("dayClicked", temp.getStringExtra("dayClicked")); // docasne pasovani z ODC sem a pak zase zpet jiank se mi ztraci promenna dayClicked => potrebuji nejak zmenit aby to nebylo takhle goofy :)
@@ -81,6 +84,18 @@ public class CreateEvent extends AppCompatActivity implements EventClockFragment
             }
         });
     }
+
+    public void setOpenColorPickerFragmentAction(){
+        ImageButton b = findViewById(R.id.openColorPickerButton);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ColorPickerFragment fragment = new ColorPickerFragment();
+                fragment.show(getSupportFragmentManager(), "ColorPickerFragment");
+            }
+        });
+    }
+
     //endregion
     @Override
     public void onTimeSelected(int hourOfDay, int minute) {
@@ -99,4 +114,9 @@ public class CreateEvent extends AppCompatActivity implements EventClockFragment
         return currentTime.format(formatter);
     }
 
+
+    @Override
+    public void onColorSelected(int color) {
+        currentColor = color;
+    }
 }
