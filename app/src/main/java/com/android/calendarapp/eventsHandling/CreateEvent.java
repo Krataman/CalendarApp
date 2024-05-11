@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.android.calendarapp.ColorPickerFragment;
 import com.android.calendarapp.OnDayClickActivity;
 import com.android.calendarapp.R;
 

@@ -1,25 +1,18 @@
-package com.android.calendarapp;
+package com.android.calendarapp.eventsHandling;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
-import com.android.calendarapp.eventsHandling.EventClockFragment;
-import com.skydoves.colorpickerview.ColorEnvelope;
+import com.android.calendarapp.R;
 import com.skydoves.colorpickerview.ColorPickerView;
-import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 import com.skydoves.colorpickerview.listeners.ColorListener;
-import com.skydoves.colorpickerview.listeners.ColorPickerViewListener;
 
 public class ColorPickerFragment extends DialogFragment {
 
