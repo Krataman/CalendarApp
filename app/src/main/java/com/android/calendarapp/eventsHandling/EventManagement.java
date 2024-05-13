@@ -14,13 +14,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class EventManagement {
-    // Singleton instance
-    private static EventManagement instance;
-    // HashMap to store events by date
+    private static EventManagement instance; // Singleton
     private HashMap<String, List<Event>> daysAndEvents;
 
     //region cons
-    // Private constructor to prevent external instantiation
     private EventManagement() {
         daysAndEvents = new HashMap<>();
     }
@@ -55,8 +52,6 @@ public class EventManagement {
         }
     }
     //endregion
-
-
     public HashMap<String, List<Event>> getDaysAndEvents() {
         return daysAndEvents;
     }

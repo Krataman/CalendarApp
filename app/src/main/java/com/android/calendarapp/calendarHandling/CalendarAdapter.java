@@ -47,7 +47,6 @@ public class CalendarAdapter  extends RecyclerView.Adapter<CalendarViewHolder>{
         return new CalendarViewHolder(view, itemListener);
     }
     //endregion
-
     //region onBindViewHolder
     // 'onBindViewHolder' je zodpovědná za aktualizaci obsahu jednoho prvku v 'RecyclerView' s daty z poskytnutého seznamu (daysInMonth)
     /**

@@ -20,7 +20,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
         this.eventList = eventList;
         this.context = context;
     }
-
+    //region onCreateViewHolder
+    /**
+     * Inflatuje layout s jednotlivymi eventy na jednotlive dny.
+     * @param parent The ViewGroup into which the new View will be added after it is bound to
+     *               an adapter position.
+     * @param viewType The view type of the new View.
+     *
+     * @return
+     */
     @NonNull
     @Override
     public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,7 +40,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
         layParams.height = (int) (parent.getHeight() * 0.2);
         return new EventViewHolder(view);
     }
-
+    //endregion
+    //region onBindViewHolder
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         Event event = eventList.get(position);
@@ -43,6 +52,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
         holder.color.setBackgroundColor(event.getColor());
         // Nastavte další prvky UI podle potřeby
     }
+    //endregion
 
     @Override
     public int getItemCount() {

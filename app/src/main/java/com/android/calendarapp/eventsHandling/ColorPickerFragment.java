@@ -19,13 +19,17 @@ public class ColorPickerFragment extends DialogFragment {
     private ColorPickerView colorPickerView;
     private OnColorSelectedListener listener;
 
+    //region Color interface
     public interface OnColorSelectedListener {
         void onColorSelected(int color);
     }
-
+    //endregion
+    //region setListener
     public void setColorPickerListener(OnColorSelectedListener listener) {
         this.listener = listener;
     }
+    //endregion
+    //region onCreateView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_color_picker, container, false);
@@ -52,7 +56,8 @@ public class ColorPickerFragment extends DialogFragment {
         });
         return view;
     }
-
+    //endregion
+    //region onAttach
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -62,4 +67,5 @@ public class ColorPickerFragment extends DialogFragment {
             throw new RuntimeException(context.toString() + "OnColorSelected not implemented!!!");
         }
     }
+    //endregion
 }
