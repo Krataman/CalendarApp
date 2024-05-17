@@ -23,6 +23,7 @@ public class CreateEvent extends AppCompatActivity implements EventClockFragment
     private View colorView;
     private int currentColor = Color.WHITE;
 
+    //region onCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class CreateEvent extends AppCompatActivity implements EventClockFragment
         setOpenColorPickerFragmentAction();
         setConfirmEventCreationAction();
     }
-
+    //endregion
     //region createToolbar
     public void createToolBar(){
         Toolbar toolBar = findViewById(R.id.CreateEventToolbar);
@@ -96,6 +97,7 @@ public class CreateEvent extends AppCompatActivity implements EventClockFragment
     }
 
     //endregion
+    //region onTimeSelected (LISTENER pro ziskani casu, ktery uzivatel vybere)
     @Override
     public void onTimeSelected(int hourOfDay, int minute) {
         // Zpracování času vybraného z fragmentu
@@ -105,17 +107,19 @@ public class CreateEvent extends AppCompatActivity implements EventClockFragment
         TextView textView = findViewById(R.id.eventTextClock);
         textView.setText(selectedTime);
     }
-
+    //endregion
+    //region current Time
     public String currTime(){
         LocalTime currentTime = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
         return currentTime.format(formatter);
     }
-
-
+    //endregion
+    //region color LISTENER
     @Override
     public void onColorSelected(int color) {
         currentColor = color;
     }
+    //endregion
 }

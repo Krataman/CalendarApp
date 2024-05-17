@@ -28,6 +28,7 @@ public class OnDayClickActivity extends AppCompatActivity {
     private String dayClicked;
     private boolean deser = true;
 
+    //region onCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +61,7 @@ public class OnDayClickActivity extends AppCompatActivity {
         incialization();
         createToolBar();
     }
-
+    //endregion
     //region createEvent
     public void createEvent(){
 

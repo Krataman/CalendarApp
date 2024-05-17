@@ -68,12 +68,9 @@ public class EventClockFragment extends DialogFragment{
         return view;
     }
     //endregion
-    //region attach
+    //region onAttach
     /**
-     * Called when a fragment is first attached to its context.
-     * This is the point where you should initialize any components
-     * that require a reference to the context or need to communicate
-     * with the parent activity.
+     * Zavolan kdyz se fragment pripoji ke kontextu nejake aktivity, napr. MainActivity
      *
      * @param context The context to which the fragment is being attached.
      *
