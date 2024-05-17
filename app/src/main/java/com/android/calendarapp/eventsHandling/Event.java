@@ -9,9 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.calendarapp.R;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Event extends AppCompatActivity {
+public class Event extends AppCompatActivity implements Serializable {
     private String nameOfEvent;
     private String descriptionOfTheEvent;
     private String locationOfTheEvent;

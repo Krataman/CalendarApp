@@ -3,11 +3,14 @@ package com.android.calendarapp;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,8 +41,15 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
         initializeWidgets();
         selectedDate = LocalDate.now();
         setMonthAndYearView();
+        createToolBar();
 
+    }
 
+    //region createToolbar
+    public void createToolBar(){
+        Toolbar toolBar = findViewById(R.id.mainToolbar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setTitle("Main page");
     }
 
     private void setMonthAndYearView() {

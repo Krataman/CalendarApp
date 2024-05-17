@@ -26,6 +26,7 @@ public class OnDayClickActivity extends AppCompatActivity {
     private EventAdapter adapter;
     private EventManagement management;
     private String dayClicked;
+    private boolean deser = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,11 @@ public class OnDayClickActivity extends AppCompatActivity {
         setContentView(R.layout.activity_odcactivity);
 
         management = EventManagement.getInstance();
+
+        if(deser){
+            management.deserialize(getApplicationContext());
+        }
+
         passedInIntent = getIntent();
 
         /** TESTING
