@@ -13,7 +13,7 @@
         android:id="@+id/ODCToolbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orange"
+        android:background="@color/gui_color"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right|bottom"
             android:layout_margin="20dp"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/gui_color"
             android:onClick="startCreateEvent"
             android:src="@drawable/add" />
 

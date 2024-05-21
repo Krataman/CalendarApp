@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,6 +55,19 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
         getSupportActionBar().setTitle("Main page");
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        startSettings();
+        return true;
+    }
+
     private void setMonthAndYearView() {
         monthAndYear.setText(dateFormat(selectedDate, 1));
         ArrayList<String> daysInMonth = getDaysInCurrentMonth(selectedDate);
@@ -61,6 +77,12 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(calendarAdapter);
+
+    }
+
+    private void startSettings(){
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
 
     }
 
