@@ -38,7 +38,7 @@ public class CreateEvent extends AppCompatActivity implements EventClockFragment
     public void createToolBar(){
         Toolbar toolBar = findViewById(R.id.CreateEventToolbar);
         setSupportActionBar(toolBar);
-        getSupportActionBar().setTitle("New Event");
+        getSupportActionBar().setTitle(getString(R.string.new_event));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     //endregion

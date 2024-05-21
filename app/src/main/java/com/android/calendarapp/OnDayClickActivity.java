@@ -70,7 +70,7 @@ public class OnDayClickActivity extends AppCompatActivity {
     public void createToolBar(){
         Toolbar toolBar = findViewById(R.id.ODCToolBar);
         setSupportActionBar(toolBar);
-        getSupportActionBar().setTitle("Go Back");
+        getSupportActionBar().setTitle(getString(R.string.go_back));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     //endregion

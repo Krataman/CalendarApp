@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
     public void createToolBar(){
         Toolbar toolBar = findViewById(R.id.mainToolbar);
         setSupportActionBar(toolBar);
-        getSupportActionBar().setTitle("Main page");
+        getSupportActionBar().setTitle(getString(R.string.main_page));
     }
 
     @Override

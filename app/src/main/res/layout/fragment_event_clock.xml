@@ -26,11 +26,11 @@
 
         <Button
             android:id="@+id/clockFragmentGoBackButton"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:backgroundTint="@color/gui_color"
-            android:text="Save" />
+            android:text="@string/save" />
 
     </LinearLayout>
 
