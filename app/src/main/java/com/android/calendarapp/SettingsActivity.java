@@ -20,7 +20,7 @@ public class SettingsActivity extends AppCompatActivity {
     public void createToolBar(){
         Toolbar toolBar = findViewById(R.id.settingsToolBar);
         setSupportActionBar(toolBar);
-        getSupportActionBar().setTitle("Settings");
+        getSupportActionBar().setTitle(getString(R.string.settings));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
