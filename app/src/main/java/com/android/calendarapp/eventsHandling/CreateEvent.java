@@ -108,14 +108,6 @@ public class CreateEvent extends AppCompatActivity implements EventClockFragment
         textView.setText(selectedTime);
     }
     //endregion
-    //region current Time
-    public String currTime(){
-        LocalTime currentTime = LocalTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-
-        return currentTime.format(formatter);
-    }
-    //endregion
     //region color LISTENER
     @Override
     public void onColorSelected(int color) {

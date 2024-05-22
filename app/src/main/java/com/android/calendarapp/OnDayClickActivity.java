@@ -47,7 +47,7 @@ public class OnDayClickActivity extends AppCompatActivity {
         // ze datum ktere jsem pasoval nebylo datum dne na ktery uzivatel klika ale aktualni/dnesni datum :)
 
 
-        check();
+        createEvent();
         incialization();
         createToolBar();
     }
@@ -55,15 +55,16 @@ public class OnDayClickActivity extends AppCompatActivity {
     //region createEvent
     public void createEvent(){
 
-        String name = passedInIntent.getStringExtra("nameOfEvent");
-        String location = passedInIntent.getStringExtra("descriptionOfTheEvent");
-        String descritpion = passedInIntent.getStringExtra("locationOfTheEvent");
-        String time = passedInIntent.getStringExtra("timeOfTheEvent");
-        int color = passedInIntent.getIntExtra("sC", Color.WHITE);
+        if(passedInIntent != null && passedInIntent.getBooleanExtra("isEventCreated", false)){
+            String name = passedInIntent.getStringExtra("nameOfEvent");
+            String location = passedInIntent.getStringExtra("descriptionOfTheEvent");
+            String descritpion = passedInIntent.getStringExtra("locationOfTheEvent");
+            String time = passedInIntent.getStringExtra("timeOfTheEvent");
+            int color = passedInIntent.getIntExtra("sC", Color.WHITE);
 
 
-        management.addEvents(dayClicked, new Event(name, location, descritpion, time, color));
-
+            management.addEvents(dayClicked, new Event(name, location, descritpion, time, color));
+        }
     }
     //endregion
     //region createToolbar
@@ -82,16 +83,7 @@ public class OnDayClickActivity extends AppCompatActivity {
         finish();
     }
     //endregion
-    //region eventCreationCheck
-    public void check(){
-        if(passedInIntent != null) {
-            if (passedInIntent.getBooleanExtra("isEventCreated", false)) {
-                createEvent();
 
-            }
-        }
-    }
-    //endregion
     //region RecyclerView a Adapter
     public void incialization(){
         recyclerView = findViewById(R.id.eventsRecyclerView);
