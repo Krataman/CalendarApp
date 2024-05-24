@@ -25,7 +25,7 @@ public class MyApplication extends Application {
             @Override
             public void onActivityStarted(Activity activity) {
                 if (++activityReferences == 1 && !isActivityChangingConfigurations) {
-                    // Aplikace přechází do popředí
+                    // aplikace v popredi
                     onAppForegrounded();
                 }
             }
@@ -44,7 +44,7 @@ public class MyApplication extends Application {
             public void onActivityStopped(Activity activity) {
                 isActivityChangingConfigurations = activity.isChangingConfigurations();
                 if (--activityReferences == 0 && !isActivityChangingConfigurations) {
-                    // Aplikace přechází do pozadí
+                    // aplikace na pozadi
                     onAppBackgrounded();
                 }
             }

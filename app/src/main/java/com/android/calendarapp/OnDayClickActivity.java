@@ -43,9 +43,6 @@ public class OnDayClickActivity extends AppCompatActivity {
         passedInIntent = getIntent();
 
         dayClicked = passedInIntent.getStringExtra("dayClicked");
-        // PROBLEM !!! intetn je vzdy null??? => vyreseno vubec nechapu jak jsem to fixnul ale zrejme to souviselo s problemem,
-        // ze datum ktere jsem pasoval nebylo datum dne na ktery uzivatel klika ale aktualni/dnesni datum :)
-
 
         createEvent();
         incialization();

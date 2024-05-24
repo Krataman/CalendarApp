@@ -55,19 +55,25 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
         getSupportActionBar().setTitle(getString(R.string.main_page));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        startSettings();
-        return true;
-    }
-
+    //region setMOnthAndYear
+    /**
+     * Updates the view to display the current month and year and populates the RecyclerView
+     * with the days in the selected month.
+     *
+     * <p>This method sets the text of the month and year view using the selected date,
+     * retrieves the days in the current month, and sets up the RecyclerView with a
+     * CalendarAdapter to display these days in a grid layout.</p>
+     *
+     * <p>It performs the following steps:
+     * <ul>
+     *     <li>Sets the text of the month and year view to the formatted selected date.</li>
+     *     <li>Retrieves a list of days in the current month based on the selected date.</li>
+     *     <li>Creates a new CalendarAdapter with the list of days and the current context.</li>
+     *     <li>Configures a GridLayoutManager with 7 columns for the RecyclerView.</li>
+     *     <li>Sets the layout manager and adapter of the RecyclerView to display the days of the month.</li>
+     * </ul>
+     * </p>
+     */
     private void setMonthAndYearView() {
         monthAndYear.setText(dateFormat(selectedDate, 1));
         ArrayList<String> daysInMonth = getDaysInCurrentMonth(selectedDate);
@@ -79,13 +85,29 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
         recyclerView.setAdapter(calendarAdapter);
 
     }
-
-    private void startSettings(){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-
-    }
-
+    //endregion
+    //region getDaysInCurrentMont
+    /**
+     * Generates a list of days for the current month, formatted for a calendar view.
+     *
+     * <p>This method calculates the days in the specified month and prepares them in a format
+     * suitable for display in a 7x6 grid, typically used in calendar views. It includes empty
+     * strings for days outside the current month to align the first day of the month with the
+     * correct day of the week.</p>
+     *
+     * <p>It performs the following steps:
+     * <ul>
+     *     <li>Initializes a list to store the days of the month.</li>
+     *     <li>Gets the number of days in the specified month.</li>
+     *     <li>Determines the day of the week of the first day of the month.</li>
+     *     <li>Iterates through 42 positions (to cover a 7x6 grid), adding either empty strings
+     *         for days outside the month or the day numbers for days within the month.</li>
+     * </ul>
+     * </p>
+     *
+     * @param date The LocalDate object representing the date for which the days of the month are to be generated.
+     * @return An ArrayList of strings representing the days in the current month formatted for a calendar view.
+     */
     private ArrayList<String> getDaysInCurrentMonth(LocalDate date) {
         ArrayList<String> daysInMonthList = new ArrayList<>();
         YearMonth ym = YearMonth.from(date);
@@ -104,7 +126,8 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
         }
         return daysInMonthList;
     }
-
+    //endregion
+    //region formatDate
     private String dateFormat(LocalDate date, int type){
         if(type == 1){
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
@@ -115,12 +138,12 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
         }
         return null;
     }
-
+    //endregion
     private void initializeWidgets() {
         recyclerView = findViewById(R.id.recyclerView);
         monthAndYear = findViewById(R.id.currentMonthAndYear);
     }
-
+    //region month switcher
     public void previousMonth(View v){
         selectedDate = selectedDate.minusMonths(1);
         setMonthAndYearView();
@@ -130,21 +153,17 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
         selectedDate = selectedDate.plusMonths(1);
         setMonthAndYearView();
     }
-
+    //endregion
     @Override
     public void onItemClick(int position, String dayText) {
         if(!dayText.isEmpty()){
 
-            // Získání dne v měsíci z textu (dayText)
             int day = Integer.parseInt(dayText);
 
-            // Vytvoření data z vybraného dne
             LocalDate selectedDay = selectedDate.withDayOfMonth(day);
 
-            // Formátování data na ddMMyyyy
             String formattedDate = selectedDay.format(DateTimeFormatter.ofPattern("ddMMyyyy"));
 
-            // Předání data do startODC
             startODC(formattedDate);
         }
     }
@@ -153,35 +172,4 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
         intent.putExtra("dayClicked", dateText);
         startActivity(intent);
     }
-
-    /**
-    //region
-    public void colorPicker(){
-        colorBar = findViewById(R.id.colorBar);
-        colorPickerButton = findViewById(R.id.colorPickerButtonutton);
-
-        selectedColor = Color.RED; // Výchozí barva
-
-        colorPickerButton.setOnClickListener(v -> {
-            // Vytvoření nového dialogu AmbilWarna
-            AmbilWarnaDialog colorPickerDialog = new AmbilWarnaDialog(this, selectedColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
-                @Override
-                public void onOk(AmbilWarnaDialog dialog, int color) {
-                    // Uložení nové barvy a nastavení pruhu
-                    selectedColor = color;
-                    colorBar.setBackgroundColor(selectedColor);
-                }
-
-                @Override
-                public void onCancel(AmbilWarnaDialog dialog) {
-                    // Zrušení dialogu
-                }
-            });
-
-            // Zobrazení dialogu
-            colorPickerDialog.show();
-        });
-    }
-    //endregion
-     */
 }

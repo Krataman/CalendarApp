@@ -53,7 +53,7 @@ public class EventClockFragment extends DialogFragment{
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Získání zvoleného času
+
                 int hour = timePicker.getHour();
                 int minute = timePicker.getMinute();
 
@@ -61,7 +61,7 @@ public class EventClockFragment extends DialogFragment{
                     listener.onTimeSelected(hour, minute);
                 }
 
-                dismiss(); // Zavření fragmentu
+                dismiss();
             }
         });
 
