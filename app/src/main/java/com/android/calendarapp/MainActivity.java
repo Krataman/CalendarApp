@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements OnItemListener{
     private RecyclerView recyclerView;
     private LocalDate selectedDate;
 
-    private View colorBar; // Reference na barevný pruh
-    private Button colorPickerButton; // Tlačítko pro otevření color pickeru
-    private int selectedColor; // Aktuální zvolená barva
+    private View colorBar; 
+    private Button colorPickerButton;
+    private int selectedColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

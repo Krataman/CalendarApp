@@ -100,10 +100,8 @@ public class CreateEvent extends AppCompatActivity implements EventClockFragment
     //region onTimeSelected (LISTENER pro ziskani casu, ktery uzivatel vybere)
     @Override
     public void onTimeSelected(int hourOfDay, int minute) {
-        // Zpracování času vybraného z fragmentu
         String selectedTime = String.format("%02d:%02d", hourOfDay, minute);
 
-        // Aktualizace TextView nebo jiné komponenty s přijatým časem
         TextView textView = findViewById(R.id.eventTextClock);
         textView.setText(selectedTime);
     }
