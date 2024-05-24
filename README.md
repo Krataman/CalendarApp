@@ -1,6 +1,7 @@
 # Java docs nejdou vygenerovat, nevim proc, neprisel jsem na to a nehodlam to resit :) #
+## Nejspis to ma co docineni s @Override u nekolika metoda nevim proc a nedohledam jsem to ##
 
-## CHYBY ##
+### CHYBY ###
 Constructing Javadoc information...
 C:\Users\denis\Documents\PROJECTS\CalendarApp\app\src\main\java\com\android\calendarapp\OnDayClickActivity.java:3: error: package android.content does not exist
 import android.content.Intent;
