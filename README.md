@@ -1,5 +1,5 @@
-# Java docs nejdou vygenerovat, nevim proc, neprisel jsem na to a nehodlam to resit :) #
-## Nejspis to ma co docineni s @Override u nekolika metoda nevim proc a nedohledam jsem to ##
+# Java docs nejdou vygenerovat, nevim proc, neprisel jsem na to a nehodlam to resit :) 
+## Nejspis to ma co docineni s @Override u nekolika metoda nevim proc
 
 ### CHYBY ###
 Constructing Javadoc information...
