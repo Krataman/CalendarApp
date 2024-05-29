@@ -1,4 +1,4 @@
-# Java docs nejdou vygenerovat, nevim proc, neprisel jsem na to a nehodlam to resit :) 
+# Java docs nejdou vygenerovat, nevim proc, neprisel jsem na to 
 ## Nejspis to ma co docineni s @Override u nekolika metoda nevim proc
 
 ### CHYBY ###
